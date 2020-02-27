@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LineOperator2.Views.TotalPackagingPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Return" Clicked="OnReturnClicked"/>
+            <ListView x:Name="jobList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="0" Grid.Column="0" Text="{Binding Line, StringFormat='{0}: '}" FontSize="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                                <Label Margin="0" Grid.Column="1" Text="{Binding Value, StringFormat='{0:f1} '}" FontSize="12" VerticalOptions="Center" HorizontalOptions="End"/>
+                                <Label Margin="0" Grid.Column="2" Text="{Binding Description, StringFormat='{0}'}" FontSize="10" VerticalOptions="Center" HorizontalOptions="Start"/>
+                            </Grid>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

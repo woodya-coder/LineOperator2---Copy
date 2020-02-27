@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LineOperator2.Views.PinLinePage"
+             Title="Line Check">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Text="Pin Time:"  FontSize="15" HorizontalOptions="End"/>
+                <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="0" x:Name="Time" Placeholder="Pin Time" FontSize="15"/>
+
+                <Label VerticalOptions="Center" Grid.Column="0"  Grid.Row="1"  Text="Box Number:"  FontSize="15" HorizontalOptions="End"/>
+                <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="1" x:Name="boxNumber" Placeholder="Box Number" FontSize="15"/>
+
+                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="2" Text="Partial Box Count"  FontSize="15" HorizontalOptions="End"/>
+                <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="2" x:Name="partialCount" Placeholder="Partial Box Count" FontSize="15"/>
+
+
+                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Text="Line Speed:" FontSize="15" HorizontalOptions="End"/>
+                <StackLayout Grid.Column="1" Grid.Row="3"  Orientation="Horizontal">
+                    <Entry VerticalOptions="Center" x:Name="lineSpeed" FontSize="15" Placeholder="Line Speed" HorizontalOptions="Center"/>
+                    <Label VerticalOptions="Center"  Text="fps" HorizontalOptions="Start" FontSize="15"/>
+                </StackLayout>
+
+                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="4" Text="Sample Weight:"  FontSize="15" HorizontalOptions="End"/>
+                <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                    <Entry VerticalOptions="Center" x:Name="sampleWeight" FontSize="15" Placeholder="Sample Weight"/>
+                    <Label VerticalOptions="Center"  Text="grams" HorizontalOptions="Start" FontSize="15"/>
+                </StackLayout>
+            </Grid>
+            <Button Text="Pin!" Clicked="OnPinClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

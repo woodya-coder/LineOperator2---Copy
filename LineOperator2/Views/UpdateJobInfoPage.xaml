@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LineOperator2.Views.UpdateJobInfoPage"
+             Title="Order Information">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="partColor" TargetType="View">
+                <Setter Property="BackgroundColor" Value="#A7C1CA"/>
+            </Style>
+            <Style x:Key="jobColor" TargetType="View">
+                <Setter Property="BackgroundColor" Value="#D2BD9F"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+
+            
+            <Grid Style="{StaticResource partColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!--<Label VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Text="Part:" FontSize="15" HorizontalOptions="End"/>
+                <Label VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Text="{Binding Part.PartName}" FontSize="15"  HorizontalOptions="Start"/>-->
+                <Button
+                    Grid.Row="0" Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    CornerRadius="8"
+                    Text="{Binding Part.PartName, StringFormat='Part: {0}'}" 
+                    FontSize="20"
+                    BackgroundColor="#C15931"
+                    Clicked="OnPickPartClicked">
+                </Button>
+
+                <Label VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Text="Total Boxes:" FontSize="15" HorizontalOptions="End"/>
+                <Entry VerticalOptions="Center" Grid.Row="1" Grid.Column="1" x:Name="totalBoxes" FontSize="15" Placeholder="Total Number of Boxes"/>
+
+                <Label VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Text="Boxes per Crate:" FontSize="15" HorizontalOptions="End"/>
+                <Entry VerticalOptions="Center" Grid.Row="2" Grid.Column="1" x:Name="boxesPerCrate" FontSize="15" Placeholder="Boxes Per Crate"/>
+
+                <Label VerticalOptions="Center" Grid.Row="3" Grid.Column="0" Text="Material Used:" FontSize="15" HorizontalOptions="End"/>
+                <Entry VerticalOptions="Center" Grid.Row="3" Grid.Column="1" x:Name="material" FontSize="15" Placeholder="Material Used"/>
+
+            </Grid>
+
+            
+
+            <Button Text="Update" Clicked="OnUpdateClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

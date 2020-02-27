@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LineOperator2.Views.PickPartForLinePage"
+             Title="Part Selection">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Font="10" Margin="0" Grid.Column="1" Grid.Row="0" Text="Add New Part" Padding="0" Clicked="OnAddPartClicked"/>
+                <Button Font="10" Margin="0" Grid.Column="2" Grid.Row="0" Text="Modify Current Part" Padding="0" Clicked="OnEditPartClicked"/>
+            </StackLayout>
+            <ListView x:Name="partsList" ItemSelected="HandlePartSelection">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Path=PartName, StringFormat='{0} - '}" HorizontalOptions="End"/>
+                                <Label Grid.Column="1" Text="{Binding Path=CutLength, StringFormat='{0} ft'}" HorizontalOptions="Start"/>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
