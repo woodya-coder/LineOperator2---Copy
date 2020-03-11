@@ -33,12 +33,12 @@ namespace LineOperator2.Views
 
             //For each job in the database, calculate the metrics
             //Set the binding context to this list of calculated metrics.
-            var jobList = Database.GetListOfJobs();
+            var jobList = Database.GetListOfJobViews();
             foreach(var job in jobList)
             {
 
                 var package = new Packaging();
-                var metric = new CalculatedMetrics(job);
+                var metric = new CalculatedMetrics(job.Job);
                 if (job.Part != null)
                 {
                     if (!string.IsNullOrWhiteSpace(job.Part.BoxLength) && metric.ShiftBoxNeeds > 0)

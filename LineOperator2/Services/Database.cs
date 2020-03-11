@@ -17,7 +17,7 @@ namespace LineOperator2.Services
 
         static public event EventHandler PartsListIsUpdated;
 
-        static Dictionary<string, Job> lineJobs;
+        static Dictionary<string, JobViewModel> lineJobs;
 
 
         public static List<string> GetPartNames()
@@ -68,17 +68,17 @@ namespace LineOperator2.Services
             List<Job> jobs = new List<Job>(_database.Query<Job>("SELECT *, Max(ID) FROM JOB Group By Line ORDER BY Line ASC"));
             if(jobs.Count > 0)
             {
-                lineJobs = new Dictionary<string, Job>(jobs.Count);
+                lineJobs = new Dictionary<string, JobViewModel>(jobs.Count);
                 foreach(var job in jobs)
                 {
                     job.Read();
-                    lineJobs.Add(job.Line, job);
+                    lineJobs.Add(job.Line, new JobViewModel(job));
                 }
             }
             else
             {
 
-                lineJobs = new Dictionary<string, Job>(8);
+                lineJobs = new Dictionary<string, JobViewModel>(8);
 
                 AddUpdateJob(new Job("Line 0"));
                 AddUpdateJob(new Job("Line 1"));
@@ -129,7 +129,7 @@ namespace LineOperator2.Services
                 var found = _database.Get<Job>(job.ID);
             }
 
-            lineJobs[job.Line] = job;
+            lineJobs[job.Line] = new JobViewModel(job);
         }
 
 
@@ -182,11 +182,11 @@ namespace LineOperator2.Services
         }
 
 
-        public static Job GetJob(string lineID)
+        public static JobViewModel GetJobView(string lineID)
         {
             InitializeDB();
 
-            Job result = null;
+            JobViewModel result = null;
             try
             {
                 result = lineJobs[lineID];
@@ -198,12 +198,12 @@ namespace LineOperator2.Services
         }
 
 
-        public static List<Job> GetListOfJobs()
+        public static List<JobViewModel> GetListOfJobViews()
         {
             InitializeDB();
 
             var q = from pair in lineJobs select pair.Value;
-            return new List<Job>(q);
+            return new List<JobViewModel>(q);
         }
 
 
