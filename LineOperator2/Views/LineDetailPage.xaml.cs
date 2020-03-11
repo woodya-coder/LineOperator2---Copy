@@ -15,7 +15,7 @@ namespace LineOperator2.Views
         {
 
             InitializeComponent();
-            jobViewModel = new JobViewModel(Database.GetJob(lineID));
+            jobViewModel = Database.GetJobView(lineID);
             try
             {
                 this.BindingContext = jobViewModel;

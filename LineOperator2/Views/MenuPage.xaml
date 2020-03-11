@@ -20,7 +20,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" Padding="0,4">
                             <Label Text="{Binding Line, StringFormat='{0} - '}" FontSize="15" VerticalOptions="Center"/>
                             <Label Text="{Binding Part.PartName}" FontSize="15" VerticalOptions="Center"/>
                             <Label Text="{Binding PinPoint.BoxNumber, StringFormat='- Box {0}'}" FontSize="15" VerticalOptions="Center"/>

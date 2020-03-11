@@ -21,12 +21,7 @@ namespace LineOperator2.Views
         {
             InitializeComponent();
 
-            var jlist = Database.GetListOfJobs();
-
-            foreach(var job in jlist)
-            {
-                menuItems.Add(new JobViewModel(job));
-            }
+            menuItems = Database.GetListOfJobViews();
 
             ListViewMenu.ItemsSource = menuItems;
 
