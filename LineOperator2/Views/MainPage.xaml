@@ -1,27 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
             xmlns:views="clr-namespace:LineOperator2.Views"
-            x:Class="LineOperator2.Views.MainPage">
+            x:Class="LineOperator2.Views.MainPage"
+            BackgroundColor="{StaticResource NavigationBackground}">
 
-    <MasterDetailPage.Master>
-        <views:MenuPage />
-    </MasterDetailPage.Master>
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="Extrusion Technology Line App" 
+               BackgroundColor="Transparent" 
+               TextColor="#ddeefe" 
+               FontSize="Large" 
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
 
-    <MasterDetailPage.Detail>
-        <NavigationPage>
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
-            <x:Arguments>
-                <views:MenuPage />
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
-    
-</MasterDetailPage>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ListView x:Name="lines" 
+                  HasUnevenRows="True" 
+                  ItemTapped="OnLineTapped" 
+                  Grid.Row="0" 
+                  BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Margin="10,5,10,5" Padding="5" CornerRadius="8" BackgroundColor="{StaticResource ButtonBackground}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="0" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,10,0,10" Text="{Binding Path=Line}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,10,0,10" Text="{Binding Part.PartName}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
+
+                                <StackLayout HorizontalOptions="Center"  Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                    <Label TextColor="{StaticResource TextWhite}" 
+                                           Text="{Binding FallbackValue=NotBound, Path=NextCrateUp, StringFormat='c/u {0:ddd hh:mm t}'}" 
+                                           FontAttributes="Italic" VerticalOptions="CenterAndExpand"/>
+                                <Label TextColor="{StaticResource TextWhite}" 
+                                           Text="{Binding Path=ChangeOver, StringFormat='c/o {0:ddd hh:mm t}'}" 
+                                           FontAttributes="Italic" 
+                                           VerticalOptions="CenterAndExpand"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Grid.Row="1" Text="Settings will go here"/>
+    </Grid>
+
+
+</ContentPage>

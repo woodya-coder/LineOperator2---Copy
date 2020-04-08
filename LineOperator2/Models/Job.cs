@@ -52,9 +52,6 @@ namespace LineOperator2.ViewModels
 
 
 
-
-
-
         private void Initialize(string lineID = "Empty")
         {
             Line = lineID;

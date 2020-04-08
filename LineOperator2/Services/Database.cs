@@ -34,7 +34,7 @@ namespace LineOperator2.Services
             if (r.Count() > 0)
                 return r.First<Product>();
             else
-                return null;
+                return new Product() {ID = -1, PartName="", Title="" };
         }
 
 
@@ -71,6 +71,11 @@ namespace LineOperator2.Services
                 lineJobs = new Dictionary<string, JobViewModel>(jobs.Count);
                 foreach(var job in jobs)
                 {
+                    //I think this will be temporary until the record is correct.
+                    if(job.Part == null)
+                    {
+                        job.Part = new Product();
+                    }
                     job.Read();
                     lineJobs.Add(job.Line, new JobViewModel(job));
                 }

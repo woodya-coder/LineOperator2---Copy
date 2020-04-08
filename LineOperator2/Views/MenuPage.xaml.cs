@@ -32,7 +32,7 @@ namespace LineOperator2.Views
                     return;
 
                 var id = ((JobViewModel)e.SelectedItem).Line;
-                await RootPage.NavigateFromMenu(id);
+          //      await RootPage.NavigateFromMenu(id);
             };
         }
 

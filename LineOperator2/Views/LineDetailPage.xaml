@@ -5,9 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="LineOperator2.Views.LineDetailPage"
-             Title="{Binding Line}">
+             BackgroundColor="{StaticResource NavigationBackground}">
+    
+    
+    <NavigationPage.TitleView>
+        <Label TextColor="AntiqueWhite" Text="{Binding SummaryTitle}"/>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+            </Style>
             <Style x:Key="partColor" TargetType="View">
                 <Setter Property="BackgroundColor" Value="#A7C1CA"/>
             </Style>
@@ -19,207 +29,201 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+        
     <ContentPage.Content>
-    
-    <Grid>
+        <ScrollView >
+            <StackLayout>
+                <Frame CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}" Padding="8" Margin="5,3,5,3">
+                    <StackLayout>
+                        <Label Text="Current Line Status"  FontSize="Large" HorizontalOptions="CenterAndExpand"/>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                        <StackLayout Spacing="0">
+                            <StackLayout Margin="0" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                                <Label Text="{Binding Path=PinPoint.PinTime, StringFormat='At {0:t}'}"/>
+                                <Label Text="{Binding Path=PinPoint.BoxNumber, StringFormat='Box # {0}'}"/>
+                                <Label Text="{Binding Path=PinPoint.PartialCount, StringFormat='Had {0} pieces'}"/>
+                            </StackLayout>
 
-            <StackLayout HorizontalOptions="Center" Grid.Row="0" Orientation="Horizontal">
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"  Text="Now on Box#:"  HorizontalOptions="End"/>
+                                <Label Grid.Column="2" Text="{Binding Path=CalculatedValues.CurrentBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
+                            </Grid>
 
-                <Button Text="Start New Order" 
-                    Style="{StaticResource pinColor}"
-                    HeightRequest="30" 
-                        WidthRequest="75"
-                    FontSize="10" 
-                    Margin="0" Padding="0"
-                    Clicked="OnNewJobClicked"/>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"  Text="Line Speed (fps):" HorizontalOptions="End"/>
+                                <Label Grid.Column="2" Text="{Binding Path=PinPoint.LineSpeed}" HorizontalOptions="Start"/>
+                            </Grid>
 
-                <Button Text="Change This Order" 
-                    Style="{StaticResource pinColor}"
-                    HeightRequest="30" 
-                        WidthRequest="75"
-                    FontSize="10" 
-                    Margin="0" Padding="0"
-                    Clicked="OnUpdateJobClicked"/>
-                
-                <Button Text="Line Check" 
-                    Style="{StaticResource jobColor}"
-                    HeightRequest="30" 
-                        WidthRequest="75"
-                    FontSize="10" 
-                    Margin="0" Padding="0"
-                    Clicked="OnPinClicked"/>
-            </StackLayout>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Next Crate-Up:" HorizontalOptions="End"/>
+                                <Label Grid.Column="2" Text="{Binding CalculatedValues.NextCrateUp, StringFormat='{0:ddd hh:mm t}'}" HorizontalOptions="Start"/>
+                            </Grid>
 
-            <ScrollView Grid.Row="1">
-                <StackLayout Spacing="0" Padding="0">
-
-                    <Grid Style="{StaticResource partColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Part:" FontSize="Small" HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Part.PartName}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource partColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="Cut Length (ft):" HorizontalTextAlignment="End" FontSize="Small"/>
-                        <Label Grid.Column="1" Text="{Binding Part.CutLength}" HorizontalTextAlignment="Start" FontSize="Small"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource partColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="Pieces per Box:" HorizontalTextAlignment="End" FontSize="Small"/>
-                        <Label Grid.Column="1" Text="{Binding Part.PartsPerBox}" HorizontalTextAlignment="Start" FontSize="Small"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource partColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="Total Boxes:" HorizontalTextAlignment="End" FontSize="Small"/>
-                        <Label Grid.Column="1" Text="{Binding TotalBoxes}" HorizontalTextAlignment="Start" FontSize="Small"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource partColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="Boxes per Crate:" HorizontalTextAlignment="End" FontSize="Small"/>
-                        <Label Grid.Column="1" Text="{Binding BoxesPerCrate}" HorizontalTextAlignment="Start" FontSize="Small"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource partColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="Material Used:" HorizontalTextAlignment="End" FontSize="Small"/>
-                        <Label Grid.Column="1" Text="{Binding Material}" HorizontalTextAlignment="Start" FontSize="Small"/>
-                    </Grid>
-
-
-                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Style="{StaticResource pinColor}">
-                        <Label Text="{Binding Path=PinPoint.PinTime, StringFormat='At {0:t}'}"/>
-                        <Label Text="{Binding Path=PinPoint.BoxNumber, StringFormat='Box # {0}'}"/>
-                        <Label Text="{Binding Path=PinPoint.PartialCount, StringFormat='Had {0} pieces'}"/>
+                            <Grid  Margin="0,3,0,3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Part.Multiplier, FallbackValue=NotBound, StringFormat='Min per {0} Bxs:'}" HorizontalOptions="End"/>
+                                <Label  Grid.Column="2" Text="{Binding CalculatedValues.MinutesPerBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
+                            </Grid>
+                        </StackLayout>
+                        
+                        <Frame HorizontalOptions="Center" CornerRadius="5" Padding="8,0,8,0" BackgroundColor="{StaticResource BlockBlue}">
+                            <Button Text="Line Check" 
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource TextWhite}"
+                                    FontSize="15" 
+                                    Padding="0"
+                                    Clicked="OnPinClicked"/>
+                        </Frame>                    
                     </StackLayout>
-
-                    <Grid Style="{StaticResource pinColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"  Text="Now on Box#:" FontSize="Small" HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Path=CalculatedValues.CurrentBox, StringFormat='{0:f1}'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource pinColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"  Text="Line Speed (fps):" FontSize="Small" HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Path=PinPoint.LineSpeed}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource pinColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"  Text="Sample Weight:" FontSize="Small" HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Path=PinPoint.SampleWeight, StringFormat='{0:f1}'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource pinColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding Part.Multiplier, StringFormat='Minutes per {0} Boxes:'}" FontSize="Small" HorizontalOptions="End"/>
-                        <Label  Grid.Column="1" Text="{Binding CalculatedValues.MinutesPerBox, StringFormat='{0:f1}'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource pinColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Minutes per Pallet:" FontSize="Small"  HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding CalculatedValues.MinutesPerPallet, StringFormat='{0:f1}'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource jobColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Next Crate-Up:" FontSize="Small"  HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding CalculatedValues.NextCrateUp, StringFormat='{0:ddd hh:mm t}'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource jobColor}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Changeover Time:" FontSize="Small"  HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding CalculatedValues.ChangeOver, StringFormat='{0:ddd hh:mm t}'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-
-                    <Label HorizontalOptions="Center" Text="12 Hour Packaging Needs"/> 
+                </Frame>
 
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
+                <Frame Padding="8" Margin="5,3,5,3" CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}">
+                
+                    <StackLayout Padding="0" Spacing="0">
+                        <Label Text="Order Details" FontSize="Large" HorizontalOptions="CenterAndExpand"></Label>
 
-                        <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftBoxNeeds, StringFormat='{0:f1} '}" FontSize="Small"  HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Part.BoxLength, StringFormat='{0} Boxes'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftPalletNeeds, StringFormat='{0:f1} '}" FontSize="Small"  HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Part.PalletSize, StringFormat='{0} Pallets'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
+                            <Label Grid.Column="0" Text="Total Boxes:" HorizontalTextAlignment="End"/>
+                            <Label Grid.Column="2" Text="{Binding TotalBoxes}" HorizontalTextAlignment="Start"/>
+                        </Grid>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftCrateNeeds, StringFormat='{0:f1} '}" FontSize="Small"  HorizontalOptions="End"/>
-                        <Label Grid.Column="1" Text="{Binding Part.CrateSize, StringFormat='{0} Crates'}" FontSize="Small"  HorizontalOptions="Start"/>
-                    </Grid>
-                </StackLayout>
-            </ScrollView>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
 
-        </Grid>
+                            <Label Margin="0" Grid.Column="0" Text="Bxs/Pall(or Crt):" HorizontalTextAlignment="End"/>
+                            <Label Grid.Column="2" Text="{Binding BoxesPerCrate}" HorizontalTextAlignment="Start"/>
+                        </Grid>
+
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="Pieces per Box:" HorizontalTextAlignment="End"/>
+                            <Label Grid.Column="2" Text="{Binding Part.PartsPerBox, FallbackValue=NotBound}" HorizontalTextAlignment="Start"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="Material Used:" HorizontalTextAlignment="End"/>
+                            <Label Grid.Column="2" Text="{Binding Material}" HorizontalTextAlignment="Start"/>
+                        </Grid>
+
+                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0,15,0,0">
+                            <Frame CornerRadius="5" Padding="8" BackgroundColor="{StaticResource BlockBlue}">
+                                <Button Text="New" 
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="30" 
+                                    WidthRequest="75"
+                                    FontSize="Medium" 
+                                    Margin="0" Padding="0"
+                                    Clicked="OnNewJobClicked"
+                                    TextColor="{StaticResource TextWhite}"/>
+                            </Frame>
+
+                            <Frame CornerRadius="5" Padding="8" BackgroundColor="{StaticResource BlockBlue}">
+                                <Button Text="Modify" 
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="30" 
+                                    WidthRequest="75"
+                                    FontSize="Medium" 
+                                    Margin="0" Padding="0"
+                                    TextColor="{StaticResource TextWhite}"
+                                    Clicked="OnUpdateJobClicked"/>
+                            </Frame>
+
+                            <Frame CornerRadius="5" Padding="8" BackgroundColor="{StaticResource BlockBlue}">
+                                <Button Text="Close" 
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="30" 
+                                    WidthRequest="75"
+                                    FontSize="Medium" 
+                                    Margin="0" Padding="0"
+                                    TextColor="{StaticResource TextWhite}"
+                                    Clicked="OnUpdateJobClicked"/>
+                            </Frame>
+
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+
+                <Frame  Margin="5,3,5,3" CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}">
+                    <StackLayout Spacing="0">
+                        <Label HorizontalOptions="Center" Text="12 Hour Packaging Needs" FontSize="Large"/> 
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftBoxNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
+                            <Label Grid.Column="1" Text="{Binding Part.BoxLength, FallbackValue=NotBound, StringFormat='{0} Boxes'}"  HorizontalOptions="Start"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftPalletNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
+                            <Label Grid.Column="1" Text="{Binding Part.PalletSize,FallbackValue=NotBound,StringFormat='{0} Pallets'}"  HorizontalOptions="Start"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftCrateNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
+                            <Label Grid.Column="1" Text="{Binding Part.CrateSize,FallbackValue=NotBound, StringFormat='{0} Crates'}"  HorizontalOptions="Start"/>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+
     </ContentPage.Content>
 </ContentPage>

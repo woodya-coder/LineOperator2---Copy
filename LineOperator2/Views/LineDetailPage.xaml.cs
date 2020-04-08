@@ -11,14 +11,16 @@ namespace LineOperator2.Views
     {
         JobViewModel jobViewModel;
 
-        public LineDetailPage(string lineID)
+        public LineDetailPage(JobViewModel model)
         {
 
             InitializeComponent();
-            jobViewModel = Database.GetJobView(lineID);
+
+            
+            jobViewModel = model;
             try
             {
-                this.BindingContext = jobViewModel;
+                this.BindingContext = model;
             }
             catch(Exception e)
             {

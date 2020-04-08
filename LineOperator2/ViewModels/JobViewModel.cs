@@ -10,9 +10,6 @@ namespace LineOperator2.ViewModels
     {
         private Job job;
 
-
-
-
         public JobViewModel(Job source)
         {
             job = source;
@@ -45,12 +42,21 @@ namespace LineOperator2.ViewModels
                 NotifyPropertyChange("MinutesPerBox");
                 NotifyPropertyChange("MinutesPerPallet");
                 NotifyPropertyChange("NextCrateUp");
-                NotifyPropertyChange("NextChangeOver");
+                NotifyPropertyChange("ChangeOver");
             }
         }
 
 
         #region Properties
+
+        public string SummaryTitle
+        {
+            get 
+            { 
+                return string.Format("{0}:  #{1}   {2} ft   {3}", Line, Part.PartName, Part.CutLength, Job.Material); 
+            }
+        }
+
 
         CalculatedMetrics metrics;
         public CalculatedMetrics CalculatedValues 
@@ -60,14 +66,6 @@ namespace LineOperator2.ViewModels
             {
                 metrics = value;
                 NotifyPropertyChange("");
-                //NotifyPropertyChange("CurrentBox");
-                //NotifyPropertyChange("ShiftBoxNeeds");
-                //NotifyPropertyChange("ShiftPalletNeeds");
-                //NotifyPropertyChange("ShiftCrateNeeds");
-                //NotifyPropertyChange("MinutesPerBox");
-                //NotifyPropertyChange("MinutesPerPallet");
-                //NotifyPropertyChange("NextCrateUp");
-                //NotifyPropertyChange("NextChangeOver");
             }
         }
 
@@ -200,16 +198,6 @@ namespace LineOperator2.ViewModels
             }
         }
 
-
-        public ObservableCollection<Product> Parts
-        {
-            get { return job.Parts; }
-            set
-            {
-                job.Parts = value;
-                NotifyPropertyChange();
-            }
-        }
 
 
 
