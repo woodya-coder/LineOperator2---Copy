@@ -50,11 +50,13 @@
                                 <StackLayout HorizontalOptions="Center"  Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                                     <Label TextColor="{StaticResource TextWhite}" 
                                            Text="{Binding FallbackValue=NotBound, Path=NextCrateUp, StringFormat='c/u {0:ddd hh:mm t}'}" 
-                                           FontAttributes="Italic" VerticalOptions="CenterAndExpand"/>
+                                           FontAttributes="Italic" VerticalOptions="CenterAndExpand"
+                                           Margin="5,0,5,0"/>
                                 <Label TextColor="{StaticResource TextWhite}" 
                                            Text="{Binding Path=ChangeOver, StringFormat='c/o {0:ddd hh:mm t}'}" 
                                            FontAttributes="Italic" 
-                                           VerticalOptions="CenterAndExpand"/>
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="5,0,5,0"/>
                                 </StackLayout>
                             </Grid>
                         </Frame>
@@ -62,7 +64,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Grid.Row="1" Text="Settings will go here"/>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Report" Clicked="OnReportStatus"/>
+        </StackLayout>
     </Grid>
 
 

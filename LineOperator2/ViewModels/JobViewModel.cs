@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace LineOperator2.ViewModels
 {
@@ -14,8 +15,14 @@ namespace LineOperator2.ViewModels
         {
             job = source;
             CalculatedValues = new CalculatedMetrics(job);
+            Device.StartTimer(TimeSpan.FromMilliseconds(1000), OnRefreshTimer);
         }
 
+        private bool OnRefreshTimer()
+        {
+            this.CalculatedValues = new CalculatedMetrics(this.job);
+            return true;
+        }
 
         public Job Job
         {
@@ -65,7 +72,24 @@ namespace LineOperator2.ViewModels
             set
             {
                 metrics = value;
-                NotifyPropertyChange("");
+                NotifyPropertyChange("Line");
+                NotifyPropertyChange("TotalBoxes");
+                NotifyPropertyChange("Material");
+                NotifyPropertyChange("Parts");
+                NotifyPropertyChange("MinutesPerBox");
+                NotifyPropertyChange("MinutesPerPallet");
+                NotifyPropertyChange("PinPoint");
+                NotifyPropertyChange("Part");
+                NotifyPropertyChange("BoxesPerCrate");
+
+                NotifyPropertyChange("CurrentBox");
+                NotifyPropertyChange("ShiftBoxNeeds");
+                NotifyPropertyChange("ShiftPalletNeeds");
+                NotifyPropertyChange("ShiftCrateNeeds");
+                NotifyPropertyChange("MinutesPerBox");
+                NotifyPropertyChange("MinutesPerPallet");
+                NotifyPropertyChange("NextCrateUp");
+                NotifyPropertyChange("ChangeOver");
             }
         }
 

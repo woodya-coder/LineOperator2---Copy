@@ -51,7 +51,7 @@
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0"  Text="Now on Box#:"  HorizontalOptions="End"/>
-                                <Label Grid.Column="2" Text="{Binding Path=CalculatedValues.CurrentBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
+                                <Label Grid.Column="2" Text="{Binding Path=CurrentBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
                             </Grid>
 
                             <Grid Margin="0">
@@ -71,7 +71,7 @@
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Text="Next Crate-Up:" HorizontalOptions="End"/>
-                                <Label Grid.Column="2" Text="{Binding CalculatedValues.NextCrateUp, StringFormat='{0:ddd hh:mm t}'}" HorizontalOptions="Start"/>
+                                <Label Grid.Column="2" Text="{Binding NextCrateUp, StringFormat='{0:ddd hh:mm t}'}" HorizontalOptions="Start"/>
                             </Grid>
 
                             <Grid  Margin="0,3,0,3">
@@ -81,7 +81,7 @@
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Text="{Binding Part.Multiplier, FallbackValue=NotBound, StringFormat='Min per {0} Bxs:'}" HorizontalOptions="End"/>
-                                <Label  Grid.Column="2" Text="{Binding CalculatedValues.MinutesPerBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
+                                <Label  Grid.Column="2" Text="{Binding MinutesPerBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
                             </Grid>
                         </StackLayout>
                         
@@ -197,7 +197,7 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftBoxNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
+                            <Label Grid.Column="0" Text="{Binding ShiftBoxNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
                             <Label Grid.Column="1" Text="{Binding Part.BoxLength, FallbackValue=NotBound, StringFormat='{0} Boxes'}"  HorizontalOptions="Start"/>
                         </Grid>
 
@@ -207,7 +207,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftPalletNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
+                            <Label Grid.Column="0" Text="{Binding ShiftPalletNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
                             <Label Grid.Column="1" Text="{Binding Part.PalletSize,FallbackValue=NotBound,StringFormat='{0} Pallets'}"  HorizontalOptions="Start"/>
                         </Grid>
 
@@ -216,7 +216,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding CalculatedValues.ShiftCrateNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
+                            <Label Grid.Column="0" Text="{Binding ShiftCrateNeeds, StringFormat='{0:f1} '}"  HorizontalOptions="End"/>
                             <Label Grid.Column="1" Text="{Binding Part.CrateSize,FallbackValue=NotBound, StringFormat='{0} Crates'}"  HorizontalOptions="Start"/>
                         </Grid>
                     </StackLayout>

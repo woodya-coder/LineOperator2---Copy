@@ -34,6 +34,11 @@ namespace LineOperator2.Views
             await Navigation.PushAsync(LineViewPages[model.Line]);
         }
 
+        private void OnReportStatus(object sender, System.EventArgs e)
+        {
+
+        }
+
 
         //public async Task NavigateFromMenu(string lineID)
         //{
@@ -41,7 +46,7 @@ namespace LineOperator2.Views
         //    {
         //        MenuPages.Add(lineID, new NavigationPage(new LineDetailPage(lineID)));
         //    }
-        
+
         //    var newPage = MenuPages[lineID];
 
         //    if (newPage != null && Detail != newPage)
