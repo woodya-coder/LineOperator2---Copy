@@ -17,6 +17,7 @@ namespace LineOperator2.Views
     {
         JobViewModel viewModel;
         bool isNew;
+        readonly string CreatePartString = "Create New Part";
 
         public UpdateJobInfoPage(JobViewModel parentview, bool isNew = false)
         {
@@ -24,6 +25,10 @@ namespace LineOperator2.Views
             this.isNew = isNew;
             viewModel =  parentview;
             this.BindingContext = viewModel;
+
+            var partList = Database.GetPartNames();
+            partList.Insert(0, CreatePartString);
+            this.partPicker.ItemsSource = partList;
 
             this.totalBoxes.Text = viewModel?.TotalBoxes.ToString();
             this.boxesPerCrate.Text = viewModel?.BoxesPerCrate.ToString();
@@ -69,6 +74,27 @@ namespace LineOperator2.Views
             viewModel.CalculatedValues.UpdateCalculationsFrom(viewModel.Job);
             viewModel.Job.Write();
             await Navigation.PopAsync();
+        }
+
+
+        async private void OnPartPicked(object sender, EventArgs e)
+        {
+            if (partPicker.SelectedIndex == -1)
+                return;
+
+            Picker picker = sender as Picker;
+
+            string partName = (string)picker.SelectedItem;
+            if(partName == this.CreatePartString)
+            {
+                viewModel.Part = new Product();
+                await Navigation.PushAsync(new AddPartPage(viewModel));
+            }
+            else
+            {
+                viewModel.Job.Part = Database.GetPart(partName);
+            }
+            partPicker.SelectedIndex = -1;
         }
     }
 }

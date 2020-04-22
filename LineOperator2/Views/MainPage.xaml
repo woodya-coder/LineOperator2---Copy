@@ -11,17 +11,55 @@
         <views:MenuPage />
     </MasterDetailPage.Master>
 
-    <MasterDetailPage.Detail>
-        <NavigationPage>
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
-            <x:Arguments>
-                <views:MenuPage />
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
-    
-</MasterDetailPage>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ListView x:Name="lines" 
+                  HasUnevenRows="True" 
+                  ItemTapped="OnLineTapped" 
+                  Grid.Row="0" 
+                  BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Margin="10,5,10,5" Padding="5" CornerRadius="8" BackgroundColor="{StaticResource ButtonBackground}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="0" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,5,0,0" Text="{Binding Path=Line}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,0,0,5" Text="{Binding Part.PartName}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
+
+                                <StackLayout Padding="0" VerticalOptions="Start" HorizontalOptions="Center" Grid.ColumnSpan="2"  Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                                    <Label TextColor="{StaticResource TextWhite}" 
+                                           Text="{Binding FallbackValue=NotBound, Path=NextCrateUp, StringFormat='c/u {0:ddd hh:mm t}'}" 
+                                           FontAttributes="Italic" VerticalOptions="CenterAndExpand"
+                                           Margin="5,0,5,0"/>
+                                <Label TextColor="{StaticResource TextWhite}" 
+                                           Text="{Binding Path=ChangeOver, StringFormat='c/o {0:ddd hh:mm t}'}" 
+                                           FontAttributes="Italic" 
+                                           VerticalOptions="CenterAndExpand"
+                                           Margin="5,0,5,0"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout Grid.Row="1" Orientation="Horizontal">
+            <Button Text="Report" Clicked="OnReportStatus"/>
+        </StackLayout>
+    </Grid>
+
+
+</ContentPage>

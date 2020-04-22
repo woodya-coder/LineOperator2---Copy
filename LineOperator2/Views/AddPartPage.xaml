@@ -5,49 +5,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="LineOperator2.Views.AddPartPage"
-             Title="Modify Part">
+             Title="Modify Part"
+             BackgroundColor="{StaticResource NavigationBackground}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource TextWhite}"/>
+            </Style>
+        </ResourceDictionary>
+        </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        
+        <Frame CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}" Padding="8" Margin="5,3,5,3">
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="0" Grid.Column="0" Text="Die Number:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="15" Grid.Row="0" Grid.Column="1" x:Name="partName" Placeholder="Part Name Here" />
+                    <Label VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Text="Die Number:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="0" Grid.Column="1" x:Name="partName" Placeholder="Part Name Here" />
 
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="1" Grid.Column="0" Text="Cut Length:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="15" Grid.Row="1" Grid.Column="1" x:Name="cutLength" Placeholder="Cut Length"/>
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="1" Grid.Column="2" Text="ft" HorizontalOptions="Start"/>
+                    <Label VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Text="Cut Length:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="1" Grid.Column="1" x:Name="cutLength" Placeholder="Cut Length"/>
+                    <Label VerticalOptions="Center" Grid.Row="1" Grid.Column="2" Text="ft" HorizontalOptions="Start"/>
 
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="2" Grid.Column="0" Text="Parts per Box:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="15" Grid.Row="2" Grid.Column="1" x:Name="partsPerBox" Placeholder="Parts Per Box"/>
+                    <Label VerticalOptions="Center" Grid.Row="2" Grid.Column="0" Text="Parts per Box:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="2" Grid.Column="1" x:Name="partsPerBox" Placeholder="Parts Per Box"/>
 
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="3" Grid.Column="0" Text="Multiplier:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="15" Grid.Row="3" Grid.Column="1" x:Name="multiplier" Placeholder="Multiplier"/>
+                    <Label VerticalOptions="Center" Grid.Row="3" Grid.Column="0" Text="Multiplier:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="3" Grid.Column="1" x:Name="multiplier" Placeholder="Multiplier"/>
 
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="4" Grid.Column="0" Text="Pallet Dimensions:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="15" Grid.Row="4" Grid.Column="1" x:Name="palletSize" Placeholder="Length and maybe width"/>
-                
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="5" Grid.Column="0" Text="Box Length:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="15" Grid.Row="5" Grid.Column="1" x:Name="boxLength" Placeholder="length or type"/>
-                
-                <Label VerticalOptions="Center" FontSize="15" Grid.Row="6" Grid.Column="0" Text="Crate Size:" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" FontSize="12" Grid.Row="6" Grid.Column="1" x:Name="crateSize" Placeholder="dimensions"/>
-                
-                <Button Grid.Row="7" Grid.Column="0" Text="Confirm" Clicked="OnConfirmed" HorizontalOptions="Center"/>
-                <Button Grid.Row="7" Grid.Column="1" Text="Cancel" Clicked="OnCancelled" HorizontalOptions="Center"/>
-            </Grid>
-        </StackLayout>
+                    <Label VerticalOptions="Center" Grid.Row="4" Grid.Column="0" Text="Pallet Dimensions:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="4" Grid.Column="1" x:Name="palletSize" Placeholder="Length and maybe width"/>
+
+                    <Label VerticalOptions="Center" Grid.Row="5" Grid.Column="0" Text="Box Length:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="5" Grid.Column="1" x:Name="boxLength" Placeholder="length or type"/>
+
+                    <Label VerticalOptions="Center" Grid.Row="6" Grid.Column="0" Text="Crate Size:" HorizontalOptions="End"/>
+                    <Entry VerticalOptions="Center" Grid.Row="6" Grid.Column="1" x:Name="crateSize" Placeholder="dimensions"/>
+
+                    <Button Grid.Row="7" Grid.Column="0" Text="Confirm" Clicked="OnConfirmed" HorizontalOptions="Center"/>
+                    <Button Grid.Row="7" Grid.Column="1" Text="Cancel" Clicked="OnCancelled" HorizontalOptions="Center"/>
+                </Grid>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

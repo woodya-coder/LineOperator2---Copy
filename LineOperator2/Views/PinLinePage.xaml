@@ -24,18 +24,20 @@
                 <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Text="Pin Time:"  FontSize="15" HorizontalOptions="End"/>
                 <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="0" x:Name="Time" Placeholder="Pin Time" FontSize="15"/>
 
-                <Label VerticalOptions="Center" Grid.Column="0"  Grid.Row="1"  Text="Box Number:"  FontSize="15" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="1" x:Name="boxNumber" Placeholder="Box Number" FontSize="15"/>
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" Text="Line Speed:" FontSize="Medium" HorizontalOptions="End"/>
+                    <StackLayout Grid.Column="1" Grid.Row="1"  Orientation="Horizontal">
+                        <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" x:Name="lineSpeed" FontSize="Medium" Placeholder="Line Speed" HorizontalOptions="Center"/>
+                        <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center"  Text="fpm" HorizontalOptions="Start" FontSize="Medium"/>
+                    </StackLayout>
+                    
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0"  Grid.Row="2"  Text="Box Number:"  FontSize="Medium" HorizontalOptions="End"/>
+                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" x:Name="boxNumber" Placeholder="Box Number" FontSize="Medium"/>
 
-                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="2" Text="Partial Box Count"  FontSize="15" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="2" x:Name="partialCount" Placeholder="Partial Box Count" FontSize="15"/>
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Text="Partial Count"  FontSize="Medium" HorizontalOptions="End"/>
+                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" x:Name="partialCount" Placeholder="Partial Box Count" FontSize="Medium"/>
 
 
-                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Text="Line Speed:" FontSize="15" HorizontalOptions="End"/>
-                <StackLayout Grid.Column="1" Grid.Row="3"  Orientation="Horizontal">
-                    <Entry VerticalOptions="Center" x:Name="lineSpeed" FontSize="15" Placeholder="Line Speed" HorizontalOptions="Center"/>
-                    <Label VerticalOptions="Center"  Text="fps" HorizontalOptions="Start" FontSize="15"/>
-                </StackLayout>
+
 
                 <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="4" Text="Sample Weight:"  FontSize="15" HorizontalOptions="End"/>
                 <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal">

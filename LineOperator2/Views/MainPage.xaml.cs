@@ -7,6 +7,8 @@ using Xamarin.Forms.Xaml;
 
 using LineOperator2.Models;
 
+
+
 namespace LineOperator2.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
@@ -27,22 +29,8 @@ namespace LineOperator2.Views
 
         public async Task NavigateFromMenu(string lineID)
         {
-            if (!MenuPages.ContainsKey(lineID))
-            {
-                MenuPages.Add(lineID, new NavigationPage(new LineDetailPage(lineID)));
-            }
-
-            var newPage = MenuPages[lineID];
-
-            if (newPage != null && Detail != newPage)
-            {
-                Detail = newPage;
-
-                if (Device.RuntimePlatform == Device.Android)
-                    await Task.Delay(100);
-
-                IsPresented = false;
-            }
+            Database.SendDBToDev();
         }
+
     }
 }

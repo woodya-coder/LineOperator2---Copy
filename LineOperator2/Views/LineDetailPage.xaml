@@ -20,31 +20,86 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-    
-    <Grid>
+        <ScrollView >
+            <StackLayout>
+                <Frame CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}" Padding="8" Margin="5,3,5,3">
+                    <StackLayout>
+                        <Label Text="Current Line Status"  FontSize="Large" HorizontalOptions="CenterAndExpand"/>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                        <StackLayout Spacing="0">
+                            <StackLayout Margin="0" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                                <Label Text="{Binding Path=PinPoint.PinTime, StringFormat='At {0:t}'}"/>
+                                <Label Text="{Binding Path=PinPoint.BoxNumber, StringFormat='Box # {0}'}"/>
+                                <Label Text="{Binding Path=PinPoint.PartialCount, StringFormat='Had {0} pieces'}"/>
+                            </StackLayout>
 
-            <StackLayout HorizontalOptions="Center" Grid.Row="0" Orientation="Horizontal">
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"  Text="Now on Box#:"  HorizontalOptions="End"/>
+                                <Label Grid.Column="2" Text="{Binding Path=CurrentBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
+                            </Grid>
 
-                <Button Text="Start New Order" 
-                    Style="{StaticResource pinColor}"
-                    HeightRequest="30" 
-                        WidthRequest="75"
-                    FontSize="10" 
-                    Margin="0" Padding="0"
-                    Clicked="OnNewJobClicked"/>
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"  Text="Line Speed (fpm):" HorizontalOptions="End"/>
+                                <Label Grid.Column="2" Text="{Binding Path=PinPoint.LineSpeed}" HorizontalOptions="Start"/>
+                            </Grid>
 
-                <Button Text="Change This Order" 
-                    Style="{StaticResource pinColor}"
-                    HeightRequest="30" 
-                        WidthRequest="75"
-                    FontSize="10" 
-                    Margin="0" Padding="0"
-                    Clicked="OnUpdateJobClicked"/>
+                            <Grid  Margin="0,3,0,3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding Part.Multiplier, FallbackValue=NotBound, StringFormat='Min per {0} Bxs:'}" HorizontalOptions="End"/>
+                                <Label  Grid.Column="2" Text="{Binding MinutesPerBox, StringFormat='{0:f1}'}" HorizontalOptions="Start"/>
+                            </Grid>
+                        </StackLayout>
+
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Next Crate-Up:" HorizontalOptions="End"/>
+                            <Label Grid.Column="2" Text="{Binding NextCrateUp, StringFormat='{0:ddd hh:mm t}'}" HorizontalOptions="Start"/>
+                        </Grid>
+
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Change Over:" HorizontalOptions="End"/>
+                            <Label Grid.Column="2" Text="{Binding ChangeOver, StringFormat='{0:ddd hh:mm t}'}" HorizontalOptions="Start"/>
+                        </Grid>
+                        
+                        
+                        <Frame HorizontalOptions="Center" CornerRadius="5" Padding="8,0,8,0" BackgroundColor="{StaticResource BlockBlue}">
+                            <Button Text="Line Check" 
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource TextWhite}"
+                                    FontSize="15" 
+                                    Padding="0"
+                                    Clicked="OnPinClicked"/>
+                        </Frame>                    
+                    </StackLayout>
+                </Frame>
+
+
+                <Frame Padding="8" Margin="5,3,5,3" CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}">
                 
                 <Button Text="Line Check" 
                     Style="{StaticResource jobColor}"

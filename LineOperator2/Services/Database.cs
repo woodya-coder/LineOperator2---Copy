@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using Xamarin.Essentials;
+
 
 namespace LineOperator2.Services
 {
@@ -92,6 +94,17 @@ namespace LineOperator2.Services
 
         }
 
+        internal static void SendDBToDev()
+        {
+            var message = new EmailMessage
+            {
+                Subject = "db file from line operator app",
+                To = new List<string>() { "woody.a.anderson@gmail.com" }
+            };
+
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ETCOperations.sl3");
+            message.Attachments.Add(new EmailAttachment(dbPath));
+        }
 
         internal static Pin GetPinPoint(int jobID)
         {
@@ -148,6 +161,12 @@ namespace LineOperator2.Services
             _database.Insert(job);
         }
 
+
+        internal static Product GetPart(string partName)
+        {
+            var foundPart = parts.First(part => part.PartName == partName);
+            return foundPart;
+        }
 
         public static Product AddOrUpdate(Product newPart)
         {
