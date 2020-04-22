@@ -57,7 +57,7 @@ namespace LineOperator2.Models
                 var elapsedMinutes = DateTime.Now - job.PinPoint.PinTime;
                 float boxesSincePin = job.Part.Multiplier * (float)elapsedMinutes.TotalMinutes / this.MinutesPerBox;
                 float pinPartialBox = (float)job.PinPoint.PartialCount / (float)job.Part.PartsPerBox;
-                this.CurrentBox = (job.PinPoint.BoxNumber - 1) + pinPartialBox + boxesSincePin;
+                this.CurrentBox = (job.PinPoint.BoxNumber) + pinPartialBox + boxesSincePin;
             }
         }
     }

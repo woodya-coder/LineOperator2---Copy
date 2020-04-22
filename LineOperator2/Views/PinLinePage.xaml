@@ -5,47 +5,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="LineOperator2.Views.PinLinePage"
-             Title="Line Check">
+             Title="Line Check"
+             BackgroundColor="{StaticResource NavigationBackground}">
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="5*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        <Frame  CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}" Padding="8" Margin="5,3,5,3">
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Text="Pin Time:"  FontSize="15" HorizontalOptions="End"/>
-                <Entry VerticalOptions="Center" Grid.Column="1" Grid.Row="0" x:Name="Time" Placeholder="Pin Time" FontSize="15"/>
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Text="Pin Time:"  FontSize="Medium" HorizontalOptions="End"/>
+                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="0" x:Name="Time" Placeholder="Pin Time" FontSize="Medium"/>
 
-                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" Text="Line Speed:" FontSize="Medium" HorizontalOptions="End"/>
-                    <StackLayout Grid.Column="1" Grid.Row="1"  Orientation="Horizontal">
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0"  Grid.Row="1"  Text="Box Number:"  FontSize="Medium" HorizontalOptions="End"/>
+                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" x:Name="boxNumber" Placeholder="Box Number" FontSize="Medium"/>
+
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="2" Text="Partial Count"  FontSize="Medium" HorizontalOptions="End"/>
+                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" x:Name="partialCount" Placeholder="Partial Box Count" FontSize="Medium"/>
+
+
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Text="Line Speed:" FontSize="Medium" HorizontalOptions="End"/>
+                    <StackLayout Grid.Column="1" Grid.Row="3"  Orientation="Horizontal">
                         <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" x:Name="lineSpeed" FontSize="Medium" Placeholder="Line Speed" HorizontalOptions="Center"/>
-                        <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center"  Text="fpm" HorizontalOptions="Start" FontSize="Medium"/>
+                        <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center"  Text="fps" HorizontalOptions="Start" FontSize="Medium"/>
                     </StackLayout>
-                    
-                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0"  Grid.Row="2"  Text="Box Number:"  FontSize="Medium" HorizontalOptions="End"/>
-                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" x:Name="boxNumber" Placeholder="Box Number" FontSize="Medium"/>
 
-                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Text="Partial Count"  FontSize="Medium" HorizontalOptions="End"/>
-                    <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" x:Name="partialCount" Placeholder="Partial Box Count" FontSize="Medium"/>
-
-
-
-
-                <Label VerticalOptions="Center" Grid.Column="0" Grid.Row="4" Text="Sample Weight:"  FontSize="15" HorizontalOptions="End"/>
-                <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-                    <Entry VerticalOptions="Center" x:Name="sampleWeight" FontSize="15" Placeholder="Sample Weight"/>
-                    <Label VerticalOptions="Center"  Text="grams" HorizontalOptions="Start" FontSize="15"/>
-                </StackLayout>
-            </Grid>
-            <Button Text="Pin!" Clicked="OnPinClicked"/>
-        </StackLayout>
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="4" Text="Sample Weight:"  FontSize="Medium" HorizontalOptions="End"/>
+                    <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                        <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" x:Name="sampleWeight" FontSize="Medium" Placeholder="Sample Weight"/>
+                        <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center"  Text="g" HorizontalOptions="Start" FontSize="Medium"/>
+                    </StackLayout>
+                </Grid>
+                <Button FontSize="Large" TextColor="{StaticResource TextWhite}" CornerRadius="5" Text="Pin!" Clicked="OnPinClicked" BackgroundColor="{StaticResource BlockBlue}"/>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

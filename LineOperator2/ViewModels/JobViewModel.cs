@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace LineOperator2.ViewModels
 {
@@ -10,15 +11,18 @@ namespace LineOperator2.ViewModels
     {
         private Job job;
 
-
-
-
         public JobViewModel(Job source)
         {
             job = source;
             CalculatedValues = new CalculatedMetrics(job);
+            Device.StartTimer(TimeSpan.FromMilliseconds(1000), OnRefreshTimer);
         }
 
+        private bool OnRefreshTimer()
+        {
+            this.CalculatedValues = new CalculatedMetrics(this.job);
+            return true;
+        }
 
         public Job Job
         {
@@ -45,12 +49,21 @@ namespace LineOperator2.ViewModels
                 NotifyPropertyChange("MinutesPerBox");
                 NotifyPropertyChange("MinutesPerPallet");
                 NotifyPropertyChange("NextCrateUp");
-                NotifyPropertyChange("NextChangeOver");
+                NotifyPropertyChange("ChangeOver");
             }
         }
 
 
         #region Properties
+
+        public string SummaryTitle
+        {
+            get 
+            { 
+                return string.Format("{0}:  #{1}   {2} ft   {3}", Line, Part.PartName, Part.CutLength, Job.Material); 
+            }
+        }
+
 
         CalculatedMetrics metrics;
         public CalculatedMetrics CalculatedValues 
@@ -59,15 +72,24 @@ namespace LineOperator2.ViewModels
             set
             {
                 metrics = value;
-                NotifyPropertyChange("");
-                //NotifyPropertyChange("CurrentBox");
-                //NotifyPropertyChange("ShiftBoxNeeds");
-                //NotifyPropertyChange("ShiftPalletNeeds");
-                //NotifyPropertyChange("ShiftCrateNeeds");
-                //NotifyPropertyChange("MinutesPerBox");
-                //NotifyPropertyChange("MinutesPerPallet");
-                //NotifyPropertyChange("NextCrateUp");
-                //NotifyPropertyChange("NextChangeOver");
+                NotifyPropertyChange("Line");
+                NotifyPropertyChange("TotalBoxes");
+                NotifyPropertyChange("Material");
+                NotifyPropertyChange("Parts");
+                NotifyPropertyChange("MinutesPerBox");
+                NotifyPropertyChange("MinutesPerPallet");
+                NotifyPropertyChange("PinPoint");
+                NotifyPropertyChange("Part");
+                NotifyPropertyChange("BoxesPerCrate");
+
+                NotifyPropertyChange("CurrentBox");
+                NotifyPropertyChange("ShiftBoxNeeds");
+                NotifyPropertyChange("ShiftPalletNeeds");
+                NotifyPropertyChange("ShiftCrateNeeds");
+                NotifyPropertyChange("MinutesPerBox");
+                NotifyPropertyChange("MinutesPerPallet");
+                NotifyPropertyChange("NextCrateUp");
+                NotifyPropertyChange("ChangeOver");
             }
         }
 
@@ -200,16 +222,6 @@ namespace LineOperator2.ViewModels
             }
         }
 
-
-        public ObservableCollection<Product> Parts
-        {
-            get { return job.Parts; }
-            set
-            {
-                job.Parts = value;
-                NotifyPropertyChange();
-            }
-        }
 
 
 

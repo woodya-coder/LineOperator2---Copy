@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
-using LineOperator2.Models;
-using LineOperator2.Services;
-
 namespace LineOperator2.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged

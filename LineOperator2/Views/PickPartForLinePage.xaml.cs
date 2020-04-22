@@ -1,4 +1,5 @@
 ﻿using LineOperator2.Models;
+using LineOperator2.Services;
 using LineOperator2.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace LineOperator2.Views
             InitializeComponent();
             jobViewModel = inJob;
 
-            this.partsList.ItemsSource = jobViewModel.Parts;
+            this.partsList.ItemsSource = Database.GetParts();
             this.partsList.SelectedItem = jobViewModel.Part;
         }
 

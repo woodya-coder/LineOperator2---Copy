@@ -8,11 +8,21 @@
 
     <Application.Resources>
         <ResourceDictionary>
-            <!--Global Styles-->
+            <!--Global Colors Styles-->
+            <Color x:Key="greenColor">#8D8741</Color>
+            <Color x:Key="blueColor">#659DBD</Color>
+            <Color x:Key="fleshColor">#DAAD86</Color>
+            <Color x:Key="brownColor">#BC986A</Color>
+            <Color x:Key="sandColor">#FBEEC1</Color>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="NavigationBackground">#c17b6d</Color>
+            <Color x:Key="ButtonBackground">#902a17</Color>
+            <Color x:Key="TextWhite">#ffffff</Color>
+            <Color x:Key="BlockBlue">#6d2012</Color>
+            <!--Global Styles -->
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="BarTextColor" Value="White" />
+                <Setter Property="BarBackgroundColor" Value="#1b1b1b"/>
+                <Setter Property="BarTextColor" Value="#ddfffe"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,15 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
             xmlns:views="clr-namespace:LineOperator2.Views"
-            x:Class="LineOperator2.Views.MainPage">
+            x:Class="LineOperator2.Views.MainPage"
+            BackgroundColor="{StaticResource NavigationBackground}">
 
-    <MasterDetailPage.Master>
-        <views:MenuPage />
-    </MasterDetailPage.Master>
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="Extrusion Technology Line App" 
+               BackgroundColor="Transparent" 
+               TextColor="#ddeefe" 
+               FontSize="Large" 
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -36,10 +44,10 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Column="0" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,5,0,0" Text="{Binding Path=Line}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
-                                <Label Grid.Column="1" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,0,0,5" Text="{Binding Part.PartName}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
+                                <Label Grid.Column="0" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,10,0,10" Text="{Binding Path=Line}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="{StaticResource TextWhite}" Padding="10,10,0,10" Text="{Binding Part.PartName}" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand"/>
 
-                                <StackLayout Padding="0" VerticalOptions="Start" HorizontalOptions="Center" Grid.ColumnSpan="2"  Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                                <StackLayout HorizontalOptions="Center"  Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                                     <Label TextColor="{StaticResource TextWhite}" 
                                            Text="{Binding FallbackValue=NotBound, Path=NextCrateUp, StringFormat='c/u {0:ddd hh:mm t}'}" 
                                            FontAttributes="Italic" VerticalOptions="CenterAndExpand"
@@ -56,7 +64,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout Grid.Row="1" Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal">
             <Button Text="Report" Clicked="OnReportStatus"/>
         </StackLayout>
     </Grid>
