@@ -64,7 +64,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Grid.Row="1"  Orientation="Horizontal">
             <Button Text="Report" Clicked="OnReportStatus"/>
         </StackLayout>
     </Grid>
