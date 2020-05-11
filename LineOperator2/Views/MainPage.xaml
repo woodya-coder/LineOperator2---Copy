@@ -34,6 +34,12 @@
                 <DataTemplate>
                     <ViewCell>
                         <Frame Margin="10,5,10,5" Padding="5" CornerRadius="8" BackgroundColor="{StaticResource ButtonBackground}">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding IsTooOld}" Value="True">
+                                    <Setter Property="BackgroundColor" Value="Red"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>

@@ -29,13 +29,34 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-        
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit Die"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnEditPartClicked"/>
+        <ToolbarItem Text="Create a New Job"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnUpdateJobClicked"/>
+        <ToolbarItem Text="Modify this Job"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnUpdateJobClicked"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <ScrollView >
             <StackLayout>
                 <Frame CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}" Padding="8" Margin="5,3,5,3">
+
                     <StackLayout>
-                        <Label Text="Current Line Status"  FontSize="Large" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Current Line Status"  FontSize="Large" 
+                               BackgroundColor="{StaticResource BlockBlue}" 
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Padding="8"/>
+
 
                         <StackLayout Spacing="0">
                             <StackLayout Margin="0" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
@@ -102,7 +123,14 @@
                 <Frame Padding="8" Margin="5,3,5,3" CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}">
                 
                     <StackLayout Padding="0" Spacing="0">
-                        <Label Text="Order Details" FontSize="Large" HorizontalOptions="CenterAndExpand"></Label>
+                        <Label Text="Order Details" 
+                               FontSize="Large" 
+                               BackgroundColor="{StaticResource BlockBlue}" 
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Padding="8"/>
+
+
 
                         <Grid >
                             <Grid.ColumnDefinitions>
@@ -147,49 +175,18 @@
                             <Label Grid.Column="0" Text="Material Used:" HorizontalTextAlignment="End"/>
                             <Label Grid.Column="2" Text="{Binding Material}" HorizontalTextAlignment="Start"/>
                         </Grid>
-
-                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Margin="0,15,0,0">
-                            <Frame CornerRadius="5" Padding="8" BackgroundColor="{StaticResource BlockBlue}">
-                                <Button Text="New" 
-                                    BackgroundColor="Transparent"
-                                    HeightRequest="30" 
-                                    WidthRequest="75"
-                                    FontSize="Medium" 
-                                    Margin="0" Padding="0"
-                                    Clicked="OnNewJobClicked"
-                                    TextColor="{StaticResource TextWhite}"/>
-                            </Frame>
-
-                            <Frame CornerRadius="5" Padding="8" BackgroundColor="{StaticResource BlockBlue}">
-                                <Button Text="Modify" 
-                                    BackgroundColor="Transparent"
-                                    HeightRequest="30" 
-                                    WidthRequest="75"
-                                    FontSize="Medium" 
-                                    Margin="0" Padding="0"
-                                    TextColor="{StaticResource TextWhite}"
-                                    Clicked="OnUpdateJobClicked"/>
-                            </Frame>
-
-                            <Frame CornerRadius="5" Padding="8" BackgroundColor="{StaticResource BlockBlue}">
-                                <Button Text="Close" 
-                                    BackgroundColor="Transparent"
-                                    HeightRequest="30" 
-                                    WidthRequest="75"
-                                    FontSize="Medium" 
-                                    Margin="0" Padding="0"
-                                    TextColor="{StaticResource TextWhite}"
-                                    Clicked="OnUpdateJobClicked"/>
-                            </Frame>
-
-                        </StackLayout>
                     </StackLayout>
                 </Frame>
 
 
-                <Frame  Margin="5,3,5,3" CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}">
+                <Frame Padding="8" Margin="5,3,5,3" CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}">
                     <StackLayout Spacing="0">
-                        <Label HorizontalOptions="Center" Text="12 Hour Packaging Needs" FontSize="Large"/> 
+                        <Label Text="12 Hour Packaging Needs" 
+                               BackgroundColor="{StaticResource BlockBlue}" 
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Center"
+                               FontSize="Large"
+                               Padding="8"/> 
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -203,7 +200,6 @@
 
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>

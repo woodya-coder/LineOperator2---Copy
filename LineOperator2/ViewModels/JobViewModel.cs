@@ -21,6 +21,14 @@ namespace LineOperator2.ViewModels
         private bool OnRefreshTimer()
         {
             this.CalculatedValues = new CalculatedMetrics(this.job);
+            if(this.CalculatedValues.CurrentBox > job.TotalBoxes || job.TotalBoxes == 0)
+            {
+                this.IsTooOld = true;
+            }
+            else
+            {
+                this.IsTooOld = false;
+            }
             return true;
         }
 
@@ -248,6 +256,17 @@ namespace LineOperator2.ViewModels
             }
         }
 
+
+        private bool isTooOld;
+        public bool IsTooOld
+        {
+            get { return isTooOld; }
+            set
+            {
+                isTooOld = value;
+                NotifyPropertyChange();
+            }
+        }
         #endregion
     }
 }
