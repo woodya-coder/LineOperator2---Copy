@@ -32,7 +32,7 @@ namespace LineOperator2.Models
 
             if (job.Part.Multiplier != 0 && job.PinPoint.LineSpeed != 0 && job.Part.PartsPerBox != 0 && job.BoxesPerCrate != 0)
             {
-                this.CurrentBox = job.PinPoint.BoxNumber;
+                this.CurrentBox = job.PinPoint.LastCompleteBoxNum;
                 this.MinutesPerBox = (job.Part.CutLength * job.Part.PartsPerBox) / job.PinPoint.LineSpeed;
                 this.MinutesPerPallet = this.MinutesPerBox * job.BoxesPerCrate / job.Part.Multiplier;
                 this.ShiftBoxNeeds = job.Part.Multiplier * minutesPerShift / this.MinutesPerBox;
@@ -57,7 +57,7 @@ namespace LineOperator2.Models
                 var elapsedMinutes = DateTime.Now - job.PinPoint.PinTime;
                 float boxesSincePin = job.Part.Multiplier * (float)elapsedMinutes.TotalMinutes / this.MinutesPerBox;
                 float pinPartialBox = (float)job.PinPoint.PartialCount / (float)job.Part.PartsPerBox;
-                this.CurrentBox = (job.PinPoint.BoxNumber) + pinPartialBox + boxesSincePin;
+                this.CurrentBox = (job.PinPoint.LastCompleteBoxNum) + pinPartialBox + boxesSincePin;
             }
         }
     }

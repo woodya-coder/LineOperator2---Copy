@@ -36,10 +36,10 @@ namespace LineOperator2.Views
         }
 
 
-        async private void OnPickPartClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new PickPartForLinePage(viewModel));
-        }
+        //async private void OnPickPartClicked(object sender, EventArgs e)
+        //{
+        //    await Navigation.PushAsync(new PickPartForLinePage(viewModel));
+        //}
 
 
         async private void OnUpdateClicked(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace LineOperator2.Views
             {
                 var p = new Pin
                 {
-                    BoxNumber = 1,
+                    LastCompleteBoxNum = 1,
                     PartialCount = 0,
                     SampleWeight = 0f,
                     PinTime = DateTime.Now,
@@ -77,7 +77,7 @@ namespace LineOperator2.Views
         }
 
 
-        async private void OnPartPicked(object sender, EventArgs e)
+        async private void OnPartSelectPicked(object sender, EventArgs e)
         {
             if (partPicker.SelectedIndex == -1)
                 return;
@@ -88,13 +88,24 @@ namespace LineOperator2.Views
             if(partName == this.CreatePartString)
             {
                 viewModel.Part = new Product();
-                await Navigation.PushAsync(new AddPartPage(viewModel));
+                await Navigation.PushAsync(new AddOrModifyPartPage(viewModel.Part));
             }
             else
             {
                 viewModel.Job.Part = Database.GetPart(partName);
             }
             partPicker.SelectedIndex = -1;
+        }
+
+
+        async private void OnPartModifyClicked(object sender, EventArgs e)
+        {
+            //if there is a selected product then that's what we are updating.
+            if(!string.IsNullOrEmpty(this.viewModel.Part.PartName))
+            {
+                await Navigation.PushAsync(new AddOrModifyPartPage(viewModel.Part));
+            }
+
         }
     }
 }

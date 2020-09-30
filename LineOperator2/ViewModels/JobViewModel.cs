@@ -63,7 +63,10 @@ namespace LineOperator2.ViewModels
 
 
         #region Properties
-
+        public void RefreshTitle()
+        {
+            NotifyPropertyChange("SummaryTitle");
+        }
         public string SummaryTitle
         {
             get 

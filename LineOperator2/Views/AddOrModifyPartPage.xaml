@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="LineOperator2.Views.AddPartPage"
+             x:Class="LineOperator2.Views.AddOrModifyPartPage"
              Title="Modify Part"
              BackgroundColor="{StaticResource NavigationBackground}">
 
@@ -63,8 +63,10 @@
                     <Label VerticalOptions="Center" Grid.Row="6" Grid.Column="0" Text="Crate Size:" HorizontalOptions="End"/>
                     <Entry VerticalOptions="Center" Grid.Row="6" Grid.Column="1" x:Name="crateSize" Placeholder="dimensions"/>
 
-                    <Button Grid.Row="7" Grid.Column="0" Text="Confirm" Clicked="OnConfirmed" HorizontalOptions="Center"/>
-                    <Button Grid.Row="7" Grid.Column="1" Text="Cancel" Clicked="OnCancelled" HorizontalOptions="Center"/>
+                    <StackLayout Grid.Row="7" Orientation="Horizontal" Grid.ColumnSpan="3">
+                        <Button Text="Confirm" Clicked="OnConfirmed" HorizontalOptions="Center"/>
+                        <Button Text="Cancel" Clicked="OnCancelled" HorizontalOptions="Center"/>
+                    </StackLayout>
                 </Grid>
             </StackLayout>
         </Frame>

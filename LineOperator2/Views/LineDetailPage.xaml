@@ -61,7 +61,7 @@
                         <StackLayout Spacing="0">
                             <StackLayout Margin="0" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                                 <Label Text="{Binding Path=PinPoint.PinTime, StringFormat='At {0:t}'}"/>
-                                <Label Text="{Binding Path=PinPoint.BoxNumber, StringFormat='Box # {0}'}"/>
+                                <Label Text="{Binding Path=PinPoint.LastCompleteBoxNum, StringFormat='Box # {0}'}"/>
                                 <Label Text="{Binding Path=PinPoint.PartialCount, StringFormat='Had {0} pieces'}"/>
                             </StackLayout>
 

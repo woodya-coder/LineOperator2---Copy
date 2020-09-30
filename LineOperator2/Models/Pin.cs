@@ -12,7 +12,7 @@ namespace LineOperator2.Models
 
 
         public DateTime PinTime { get; set; } = DateTime.Now;
-        public int BoxNumber { get; set; } = 0;
+        public int LastCompleteBoxNum { get; set; } = 0;
         public int PartialCount { get; set; } = 0;
         public float LineSpeed { get; set; } = 0.0f;
         public float SampleWeight { get; set; } = 0.0f;
@@ -26,7 +26,7 @@ namespace LineOperator2.Models
         {
             JobID = fromPin.JobID;
             PinTime = fromPin.PinTime;
-            BoxNumber = fromPin.BoxNumber;
+            LastCompleteBoxNum = fromPin.LastCompleteBoxNum;
             PartialCount = fromPin.PartialCount;
             LineSpeed = fromPin.LineSpeed;
             SampleWeight = fromPin.SampleWeight;

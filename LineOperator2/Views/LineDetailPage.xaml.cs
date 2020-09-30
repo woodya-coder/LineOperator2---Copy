@@ -50,9 +50,10 @@ namespace LineOperator2.Views
             await Navigation.PushAsync(new UpdateJobInfoPage(jobViewModel),true);
         }
 
-        private void OnEditPartClicked(object sender, EventArgs e)
+         async  private void OnEditPartClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new AddOrModifyPartPage(jobViewModel.Part));
+            jobViewModel.RefreshTitle();
         }
     }
 }

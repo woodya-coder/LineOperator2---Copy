@@ -5,6 +5,10 @@ using LineOperator2.Services;
 using LineOperator2.Views;
 using LineOperator2.ViewModels;
 using LineOperator2.Models;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+
 
 namespace LineOperator2
 {
@@ -47,6 +51,10 @@ namespace LineOperator2
         protected override void OnStart()
         {
             // Handle when your app starts
+            AppCenter.Start("android=8b3b5c99-0948-46c5-a73a-9371b58b6b92;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
@@ -59,5 +67,7 @@ namespace LineOperator2
         {
             // Handle when your app resumes
         }
+
+
     }
 }

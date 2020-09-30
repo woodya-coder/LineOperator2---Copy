@@ -33,25 +33,41 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit Selected Part"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnPartModifyClicked"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <Frame CornerRadius="5" BorderColor="Transparent" BackgroundColor="{StaticResource ButtonBackground}" Padding="8" Margin="5,3,5,3">
             <StackLayout>
 
                 <Grid Margin="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8*"/>
                     </Grid.ColumnDefinitions>
                     <Label VerticalOptions="Center" Grid.Column="0" Text="Part:"  HorizontalOptions="End"/>
-                    <StackLayout Grid.Column="2" Orientation="Horizontal">
-                        <Label VerticalOptions="Center" Text="{Binding Part.PartName}" HorizontalOptions="Start"/>
-
-                        <Picker x:Name="partPicker"
-                            Title="..."
-                            FontSize="Small"
-                            SelectedIndexChanged="OnPartPicked"  
+                    <StackLayout Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+                        <!--<Button VerticalOptions="Center" 
+                                Text="{Binding Part.PartName}" 
+                                FontSize="Default"
+                                HorizontalOptions="Start"
+                                Clicked="OnPartModifyClicked"/>-->
+                        <Frame BackgroundColor="LightGray" 
+                               BorderColor="Black" 
+                               Padding="5,0,5,0">
+                            
+                            <Picker x:Name="partPicker" TitleColor="Black"
+                                Title="{Binding Part.PartName}"
+                                FontSize="Default"
+                                SelectedIndexChanged="OnPartSelectPicked"  
                             />
+                        </Frame>
                     </StackLayout>
                 </Grid>
 

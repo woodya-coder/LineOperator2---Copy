@@ -68,10 +68,11 @@ namespace LineOperator2.Services
             parts = new ObservableCollection<Product>(_database.Query<Product>("SELECT * FROM Product ORDER BY PartName ASC"));
 
             List<Job> jobs = new List<Job>(_database.Query<Job>("SELECT *, Max(ID) FROM JOB Group By Line ORDER BY Line ASC"));
-            if(jobs.Count > 0)
+
+            if (jobs.Count > 0)
             {
                 lineJobs = new Dictionary<string, JobViewModel>(jobs.Count);
-                foreach(var job in jobs)
+                foreach (var job in jobs)
                 {
                     //I think this will be temporary until the record is correct.
                     if(job.Part == null)
@@ -81,11 +82,15 @@ namespace LineOperator2.Services
                     job.Read();
                     lineJobs.Add(job.Line, new JobViewModel(job));
                 }
+                //let's change "Line 10"
+                //var j = lineJobs["Line 10"];
+                //j.Line = "Line A";
+                //_database.Update(j.Job);
             }
             else
             {
 
-                lineJobs = new Dictionary<string, JobViewModel>(8);
+                lineJobs = new Dictionary<string, JobViewModel>(10);
 
                 AddUpdateJob(new Job("Line 0"));
                 AddUpdateJob(new Job("Line 1"));
@@ -95,6 +100,8 @@ namespace LineOperator2.Services
                 AddUpdateJob(new Job("Line 5"));
                 AddUpdateJob(new Job("Line 6"));
                 AddUpdateJob(new Job("Line 7"));
+                AddUpdateJob(new Job("Line 9"));
+                AddUpdateJob(new Job("Line 10"));
             }
 
         }

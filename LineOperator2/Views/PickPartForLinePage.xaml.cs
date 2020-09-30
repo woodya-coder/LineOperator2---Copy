@@ -30,13 +30,13 @@ namespace LineOperator2.Views
         async private void OnAddPartClicked(object sender, EventArgs e)
         {
             jobViewModel.Part = new Product();
-            await Navigation.PushAsync(new AddPartPage(jobViewModel));
+            await Navigation.PushAsync(new AddOrModifyPartPage(jobViewModel.Part));
         }
 
 
         async private void OnEditPartClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddPartPage(jobViewModel));
+            await Navigation.PushAsync(new AddOrModifyPartPage(jobViewModel.Part));
         }
 
 

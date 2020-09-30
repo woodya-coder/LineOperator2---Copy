@@ -39,7 +39,7 @@ namespace LineOperator2.Views
 
                 var package = new Packaging();
                 var metric = new CalculatedMetrics(job.Job);
-                if (job.Part != null)
+                if (job.Part != null && !job.IsTooOld)
                 {
                     if (!string.IsNullOrWhiteSpace(job.Part.BoxLength) && metric.ShiftBoxNeeds > 0)
                     {

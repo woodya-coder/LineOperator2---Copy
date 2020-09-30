@@ -37,7 +37,7 @@ namespace LineOperator2.Views
             }
 
             // The result rounded up is the current box.
-            var currentBox = viewmodel.PinPoint.BoxNumber +  (int)(exactCurrentBox + 1);
+            var currentBox = viewmodel.PinPoint.LastCompleteBoxNum +  (int)(exactCurrentBox + 1);
             this.boxNumber.Text = currentBox.ToString();
 
             // The fractional portion times the number of parts per box is the partial count
@@ -57,7 +57,7 @@ namespace LineOperator2.Views
             Pin p = new Pin();
 
             if (int.TryParse(this.boxNumber.Text, out int iResult))
-                p.BoxNumber = iResult;
+                p.LastCompleteBoxNum = iResult;
 
             if (int.TryParse(this.partialCount.Text, out iResult))
                 p.PartialCount = iResult;

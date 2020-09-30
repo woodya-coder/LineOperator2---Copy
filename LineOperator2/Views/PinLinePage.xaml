@@ -26,7 +26,7 @@
                     <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" Text="Pin Time:"  FontSize="Medium" HorizontalOptions="End"/>
                     <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="0" x:Name="Time" Placeholder="Pin Time" FontSize="Medium"/>
 
-                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0"  Grid.Row="1"  Text="Box Number:"  FontSize="Medium" HorizontalOptions="End"/>
+                    <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0"  Grid.Row="1"  Text="Last Full Box #:"  FontSize="Medium" HorizontalOptions="End"/>
                     <Entry TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" x:Name="boxNumber" Placeholder="Box Number" FontSize="Medium"/>
 
                     <Label TextColor="{StaticResource TextWhite}" VerticalOptions="Center" Grid.Column="0" Grid.Row="2" Text="Partial Count"  FontSize="Medium" HorizontalOptions="End"/>

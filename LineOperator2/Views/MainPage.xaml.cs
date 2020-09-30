@@ -34,9 +34,9 @@ namespace LineOperator2.Views
             await Navigation.PushAsync(LineViewPages[model.Line]);
         }
 
-        private void OnReportStatus(object sender, System.EventArgs e)
+        async private void OnReportStatus(object sender, System.EventArgs e)
         {
-
+            await Navigation.PushAsync(new TotalPackagingPage());
         }
 
 
