@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <int name="com.microsoft.appcenter.crashes.memory" value="80" />
+    <string name="installId">8748162b-58be-40e8-9155-f11cd59aa72f</string>
+    <set name="sessions">
+        <string>1606143070769/6ebeaa59-02d9-4cad-b3fb-5f9720265bca/1606143070594</string>
+        <string>1606174877692/9a12d66f-6777-4195-a5bd-824f5281333d/1606143070594</string>
+        <string>1606154179000/cd180b10-af29-42a2-9a1b-7a0c0933da63/1606143070594</string>
+        <string>1606144944653/791ddd50-758d-410f-99f0-c5f6217a300b/1606143070594</string>
+        <string>1606156627303/52b53ac6-06d2-4cca-a28e-afe00acf1b88/1606143070594</string>
+        <string>1606143070602//1606143070594</string>
+        <string>1606143486103/240b037b-caf8-4757-a766-c73a9a1eb14f/1606143070594</string>
+        <string>1606145409025/93d16e35-c4ed-4798-9efb-3160f23c8874/1606143070594</string>
+        <string>1605832243035/57446e04-97c1-4174-9149-b83fd5e429ce/1605809811883</string>
+        <string>1605829625584/e3140b1c-9870-458a-8838-3ec83e59c3ed/1605809811883</string>
+    </set>
+</map>

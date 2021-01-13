@@ -31,7 +31,7 @@ namespace LineOperator2.ViewModels
             set
             {
                 pinpoint = value;
-                Database.Insert(value);
+                Database.AddUpdatePin(value);
             }
         }
 
@@ -77,7 +77,7 @@ namespace LineOperator2.ViewModels
             if (this.PinPoint != null)
             {
                 this.PinPoint.JobID = this.ID;
-                Database.Insert(this.PinPoint);
+                Database.AddUpdatePin(this.PinPoint);
             }
 
             //Write "pin" to the database with the key of "this" as a foriegn key
