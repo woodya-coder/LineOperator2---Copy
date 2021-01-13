@@ -31,10 +31,6 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit Die"
-                     Order="Secondary"
-                     Priority="0"
-                     Clicked="OnEditPartClicked"/>
         <ToolbarItem Text="Create a New Job"
                      Order="Secondary"
                      Priority="0"
@@ -43,6 +39,14 @@
                      Order="Secondary"
                      Priority="0"
                      Clicked="OnUpdateJobClicked"/>
+        <ToolbarItem Text="End of Shift Numbers"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnEndOfShift"/>
+        <ToolbarItem Text="Edit Die"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnEditPartClicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

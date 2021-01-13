@@ -72,6 +72,7 @@
         </ListView>
         <StackLayout Grid.Row="1"  Orientation="Horizontal">
             <Button Text="Report" Clicked="OnReportStatus"/>
+            <Button Text="Get DB" Clicked="OnGetDB"/>
         </StackLayout>
     </Grid>
 

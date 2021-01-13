@@ -1,6 +1,7 @@
 ﻿using LineOperator2.Services;
 using LineOperator2.ViewModels;
 using System;
+using System.Runtime.InteropServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -50,10 +51,17 @@ namespace LineOperator2.Views
             await Navigation.PushAsync(new UpdateJobInfoPage(jobViewModel),true);
         }
 
-         async  private void OnEditPartClicked(object sender, EventArgs e)
+        async  private void OnEditPartClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddOrModifyPartPage(jobViewModel.Part));
             jobViewModel.RefreshTitle();
+        }
+
+
+        async private void OnEndOfShift(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EndOfShiftPage(jobViewModel));
+
         }
     }
 }

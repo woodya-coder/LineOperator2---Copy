@@ -1,8 +1,12 @@
 ﻿using LineOperator2.Services;
 using LineOperator2.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace LineOperator2.Views
 {
@@ -37,6 +41,26 @@ namespace LineOperator2.Views
         async private void OnReportStatus(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new TotalPackagingPage());
+        }
+
+        
+        private void OnGetDB(object sender, System.EventArgs e)
+        {
+
+            //After copying this I was able to use Android Device explorer to copy it from this path
+            ///storage/emulated/legacy/Android/data/com.companyname/files/etcdb.sl3
+            //copy database to external storage.
+            /*     string dbpath = Database.GetDBFileName();
+                 string externalpath = Path.Combine(DependencyService.Get<IExternalStoragePath>().GetExternalStoragePath(), "etcdb.sl3");
+                 Console.WriteLine($"Copying file from {dbpath} to {externalpath}");
+                 File.Copy(dbpath, externalpath);
+                 */
+
+            List<string> filePaths = DependencyService.Get<IExternalStoragePath>().GetExternalStoragePath();
+            foreach(var f in filePaths)
+            {
+                Console.WriteLine(f);
+            }
         }
 
 

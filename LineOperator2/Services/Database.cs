@@ -19,7 +19,7 @@ namespace LineOperator2.Services
 
         static public event EventHandler PartsListIsUpdated;
 
-        static Dictionary<string, JobViewModel> lineJobs;
+        static SortedDictionary<string, JobViewModel> lineJobs;
 
 
         public static List<string> GetPartNames()
@@ -47,6 +47,12 @@ namespace LineOperator2.Services
         }
 
 
+        public static string GetDBFileName()
+        {
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ETCOperations.sl3");
+            return dbPath;
+        }
+
         static void InitializeDB()
         {
             if (_database != null)
@@ -69,9 +75,10 @@ namespace LineOperator2.Services
 
             List<Job> jobs = new List<Job>(_database.Query<Job>("SELECT *, Max(ID) FROM JOB Group By Line ORDER BY Line ASC"));
 
+            
             if (jobs.Count > 0)
             {
-                lineJobs = new Dictionary<string, JobViewModel>(jobs.Count);
+                lineJobs = new SortedDictionary<string, JobViewModel>();
                 foreach (var job in jobs)
                 {
                     //I think this will be temporary until the record is correct.
@@ -82,15 +89,26 @@ namespace LineOperator2.Services
                     job.Read();
                     lineJobs.Add(job.Line, new JobViewModel(job));
                 }
+
+                if (jobs.Count <= 8)
+                {
+                    AddUpdateJob(new Job("Line 8"));
+                    AddUpdateJob(new Job("Line 9"));
+                    AddUpdateJob(new Job("Line 10"));
+                }
                 //let's change "Line 10"
-                //var j = lineJobs["Line 10"];
-                //j.Line = "Line A";
-                //_database.Update(j.Job);
+                if (lineJobs.ContainsKey("Line 10"))
+                {
+                    var j = lineJobs["Line 10"];
+                    j.Line = "Line A";
+                    _database.Update(j.Job);
+                }
+
             }
             else
             {
 
-                lineJobs = new Dictionary<string, JobViewModel>(10);
+                lineJobs = new SortedDictionary<string, JobViewModel>();
 
                 AddUpdateJob(new Job("Line 0"));
                 AddUpdateJob(new Job("Line 1"));
@@ -100,6 +118,7 @@ namespace LineOperator2.Services
                 AddUpdateJob(new Job("Line 5"));
                 AddUpdateJob(new Job("Line 6"));
                 AddUpdateJob(new Job("Line 7"));
+
                 AddUpdateJob(new Job("Line 9"));
                 AddUpdateJob(new Job("Line 10"));
             }
@@ -159,7 +178,7 @@ namespace LineOperator2.Services
 
 
 
-        internal static void Insert(Pin pinPoint)
+        internal static void AddUpdatePin(Pin pinPoint)
         {
             InitializeDB();
             _database.Insert(pinPoint);
